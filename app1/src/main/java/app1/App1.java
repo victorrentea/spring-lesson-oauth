@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
@@ -22,8 +22,8 @@ public class App1 {
   }
 
   @GetMapping("/")
-  String hello(@AuthenticationPrincipal OidcUser user,
-               @RegisteredOAuth2AuthorizedClient OAuth2AuthorizedClient client) {
+  String hello(@RegisteredOAuth2AuthorizedClient OAuth2AuthorizedClient client) { // the access token is not in SecurityContextHolder
+    OidcUser user = (OidcUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     String accessToken = client.getAccessToken().getTokenValue();
     log.info("ID token: {}", user.getIdToken().getTokenValue());
     log.info("Access token -> ms: {}", accessToken);

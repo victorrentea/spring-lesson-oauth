@@ -5,8 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
-import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,10 +19,9 @@ public class App2 {
   }
 
   @GetMapping("/")
-  String hello(@RegisteredOAuth2AuthorizedClient OAuth2AuthorizedClient client) {
+  String hello() {
     OidcUser user = (OidcUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     log.info("ID token: {}", user.getIdToken().getTokenValue());
-    log.info("Access token: {}", client.getAccessToken().getTokenValue());
     return "app2: Hello " + user.getPreferredUsername() + "!";
   }
 }
