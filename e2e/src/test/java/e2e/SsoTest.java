@@ -33,7 +33,7 @@ class SsoTest {
     assertTrue(formAction.find(), "Expected Keycloak login form");
 
     String app1 = post(formAction.group(1).replace("&amp;", "&"), "username=user&password=user");
-    assertEquals("app1: Hello user (user@example.com)! ms: Hello user!", app1);
+    assertEquals("app1: Hello user (user@example.com, branch B42)! ms: Hello user!", app1);
 
     assertEquals("app2: Hello user! ms: Hello service-account-app2!", get("http://localhost:8082/")); // SSO: no login form
   }

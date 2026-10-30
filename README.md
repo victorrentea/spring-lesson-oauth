@@ -13,7 +13,7 @@ keycloak/start.sh     # Windows: keycloak\start.cmd. First run downloads Keycloa
 mvn package -DskipTests
 java -jar app1/target/app1-1.jar   # same for app2, ms
 ```
-Open http://localhost:8081 → Keycloak login → `app1: Hello user (user@example.com)! ms: Hello user!`
+Open http://localhost:8081 → Keycloak login → `app1: Hello user (user@example.com, branch B42)! ms: Hello user!`
 Then http://localhost:8082 → no password asked (SSO: Keycloak recognizes its own session cookie) → `app2: Hello user! ms: Hello service-account-app2!`
 
 Every app logs the tokens it holds/sends; ms logs the token it receives.

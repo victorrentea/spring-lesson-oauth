@@ -30,6 +30,6 @@ public class App1 {
     String msResponse = RestClient.create().get().uri("http://localhost:8083/")
         .header("Authorization", "Bearer " + accessToken)
         .retrieve().body(String.class);
-    return "app1: Hello " + user.getPreferredUsername() + " (" + user.getEmail() + ")! " + msResponse;
+    return "app1: Hello " + user.getPreferredUsername() + " (" + user.getEmail() + ", branch " + user.getClaimAsString("branchOfficeId") + ")! " + msResponse;
   }
 }
