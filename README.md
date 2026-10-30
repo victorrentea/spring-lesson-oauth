@@ -9,7 +9,7 @@
 
 ## Run
 ```bash
-keycloak/start.sh     # first run downloads Keycloak; realm.json is re-imported on every start
+keycloak/start.sh     # Windows: keycloak\start.cmd. First run downloads Keycloak; realm.json is re-imported on every start
 mvn package -DskipTests
 java -jar app1/target/app1-1.jar   # same for app2, ms
 ```
