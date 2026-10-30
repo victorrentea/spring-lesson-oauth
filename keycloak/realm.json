@@ -1,0 +1,13 @@
+{
+  "realm": "lesson",
+  "enabled": true,
+  "users": [{
+    "username": "user", "enabled": true,
+    "firstName": "Test", "lastName": "User", "email": "user@example.com",
+    "credentials": [{ "type": "password", "value": "user" }]
+  }],
+  "clients": [
+    { "clientId": "app1", "secret": "app1-secret", "redirectUris": ["http://localhost:8081/login/oauth2/code/keycloak"] },
+    { "clientId": "app2", "secret": "app2-secret", "redirectUris": ["http://localhost:8082/login/oauth2/code/keycloak"] }
+  ]
+}

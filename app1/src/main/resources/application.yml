@@ -1,0 +1,9 @@
+server:
+  port: 8081
+  servlet.session.cookie.name: APP1_SESSION # cookies ignore the port: app1 & app2 would overwrite each other's JSESSIONID
+spring.security.oauth2.client:
+  registration.keycloak:
+    client-id: app1
+    client-secret: app1-secret
+    scope: openid
+  provider.keycloak.issuer-uri: http://localhost:8180/realms/lesson

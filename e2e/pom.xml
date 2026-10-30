@@ -1,0 +1,9 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>lesson</groupId>
+    <artifactId>spring-lesson-oauth</artifactId>
+    <version>1</version>
+  </parent>
+  <artifactId>e2e</artifactId>
+</project>
