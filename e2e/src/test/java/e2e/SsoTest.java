@@ -35,7 +35,7 @@ class SsoTest {
     String app1 = post(formAction.group(1).replace("&amp;", "&"), "username=user&password=user");
     assertEquals("app1: Hello user! ms: Hello user!", app1);
 
-    assertEquals("app2: Hello user!", get("http://localhost:8082/")); // SSO: no login form
+    assertEquals("app2: Hello user! ms: Hello service-account-app2!", get("http://localhost:8082/")); // SSO: no login form
   }
 
   String get(String url) throws Exception {

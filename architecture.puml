@@ -21,15 +21,18 @@ human --> browser
 browser --> app1 : <b>1</b> GET /\n(no session → redirect to Keycloak)
 browser --> login : <b>2</b> user/user\n→ KEYCLOAK_SESSION cookie\n→ redirect back with ?code
 app1 --> token : <b>3</b> code + app1-secret\n← ID token + access token
-app1 --> ms : <b>4</b> Authorization: Bearer <access token>
+app1 --> ms : <b>4</b> Authorization: Bearer <user's access token>\n→ ms sees: user
 ms --> jwks : <b>5</b> verify token signature\n(keys fetched once)
 browser --> app2 : <b>6</b> GET /\n(no session → redirect to Keycloak)
 browser ..> login : <b>7</b> KEYCLOAK_SESSION already there\n→ <b>no password</b>, redirect back with ?code\n<b>= SSO</b>
 app2 --> token : <b>8</b> code + app2-secret\n← ID token + access token
+app2 --> token : <b>9</b> client_credentials + app2-secret\n← access token of app2 itself (no user)
+app2 --> ms : <b>10</b> Authorization: Bearer <app2's own token>\n→ ms sees: service-account-app2
 
 legend right
   through the browser (front channel): 1, 2, 6, 7
-  server to server (back channel): 3, 4, 5, 8
+  server to server (back channel): 3, 4, 5, 8, 9, 10
+  4 = on behalf of the user · 10 = as app2 itself
   tokens never pass through the browser, only the one-time ?code does
 endlegend
 @enduml
